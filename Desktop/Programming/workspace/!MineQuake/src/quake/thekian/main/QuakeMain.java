@@ -287,6 +287,7 @@ public class QuakeMain extends JavaPlugin implements Listener
 								Location loc2 = new Location(as.getWorld(), as.getLocation().getX(), as.getLocation().getY() + 0.5, as.getLocation().getZ());
 								if(loc2.distance(loc) < 1 && healthLocations.get(as).getCanBeUsed() && p.getHealth() < p.getMaxHealth())
 								{	
+									healthLocations.get(as).setUsed(true);
 									if(p.getHealth() + healthLocations.get(as).getHealthAmount() > p.getMaxHealth())
 										p.setHealth(p.getMaxHealth());
 									else
@@ -296,7 +297,7 @@ public class QuakeMain extends JavaPlugin implements Listener
 										
 										public void run()
 										{
-											if(GameActive && weaponLocations.containsKey(as))
+											if(GameActive && healthLocations.containsKey(as))
 											{
 												healthLocations.get(as).setUsed(false);
 												as.setHelmet(new ItemStack(Material.APPLE));
